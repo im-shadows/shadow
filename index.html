@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUXXYZ STORE</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:#00000f;
+    color:white;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* PAGE 1 - WELCOME SCREEN SEMPURNA */
+#page1{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+    z-index:100;
+    padding:20px;
+    transition:opacity 0.8s ease;
+    overflow:hidden;
+}
+
+/* VIDEO BACKGROUND - LANCAR TANPA PAUSE */
+.video-container{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-2;
+}
+
+.video-background{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.2;
+    display:block;
+    filter:brightness(0.8);
+}
+
+.bg-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(255,215,0,.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,215,0,.15) 0%, transparent 50%),
+        rgba(0,0,10,0.3);
+    z-index:-1;
+}
+
+.welcome-container{
+    max-width:900px;
+    width:100%;
+    padding:40px 30px;
+    background:rgba(10,10,26,.85);
+    backdrop-filter:blur(10px);
+    border-radius:20px;
+    border:1px solid rgba(255,215,0,.4);
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.9),
+        0 0 80px rgba(255,215,0,.2),
+        inset 0 0 40px rgba(255,215,0,.1);
+    margin:0 20px;
+    position:relative;
+    z-index:2;
+}
+
+/* JUDUL SEMPURNA - HANYA "WELCOME TO CUXXYZ STORE" */
+.welcome-title{
+    font-size:clamp(2.2rem, 7vw, 3.8rem);
+    font-weight:900;
+    color:#ffd700;
+    margin-bottom:30px;
+    line-height:1.1;
+    position:relative;
+    min-height:120px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    letter-spacing:1.5px;
+    text-align:center;
+    padding:0 15px;
+}
+
+/* Container untuk typing effect - FIXED */
+.typing-container{
+    display:inline-block;
+    text-align:center;
+    width:100%;
+    position:relative;
+    height:auto;
+    min-height:80px;
+}
+
+/* Text yang akan diisi dengan JavaScript - PASTIKAN HANYA SATU BARIS */
+#typingText{
+    color:#ffd700;
+    text-shadow:
+        0 0 12px rgba(255,215,0,.9),
+        0 0 25px rgba(255,215,0,.6),
+        0 0 40px rgba(255,215,0,.3);
+    position:relative;
+    display:inline-block;
+    white-space:nowrap;
+    overflow:hidden;
+    font-size:inherit;
+    max-width:100%;
+    text-align:center;
+    box-sizing:border-box;
+    font-weight:900;
+    padding:0 5px;
+    border-right:3px solid transparent; /* Untuk efek kursor */
+}
+
+/* Kursor berkedip yang bagus */
+.cursor{
+    display:inline-block;
+    width:4px;
+    height:1.2em;
+    background:linear-gradient(to bottom, #ffd700, #ffaa00);
+    margin-left:2px;
+    vertical-align:middle;
+    animation:blink 0.7s infinite;
+    box-shadow:0 0 15px rgba(255,215,0,1);
+    border-radius:1px;
+    transform:translateY(-2px);
+    opacity:0;
+}
+
+@keyframes blink{
+    0%,50%{opacity:1}
+    51%,100%{opacity:0}
+}
+
+.subtitle{
+    font-size:clamp(1.1rem, 3.5vw, 1.6rem);
+    color:#fff;
+    margin-bottom:40px;
+    text-shadow:0 0 10px rgba(255,255,255,.5);
+    font-weight:300;
+    letter-spacing:1px;
+    opacity:0;
+    animation:fadeIn 1s ease 4.2s forwards;
+    padding:0 20px;
+    line-height:1.4;
+}
+
+@keyframes fadeIn{
+    to{opacity:1}
+}
+
+.next-btn{
+    background:linear-gradient(45deg,#ffd700,#ffaa00);
+    color:#000;
+    border:none;
+    padding:16px 45px;
+    font-size:clamp(1rem, 2.8vw, 1.3rem);
+    font-weight:bold;
+    border-radius:50px;
+    cursor:pointer;
+    transition:all .3s ease;
+    box-shadow:
+        0 8px 25px rgba(255,215,0,.7),
+        0 0 40px rgba(255,215,0,.4);
+    position:relative;
+    overflow:hidden;
+    letter-spacing:1.2px;
+    border:2px solid rgba(255,255,255,.2);
+    opacity:0;
+    animation:fadeIn 1s ease 4.7s forwards;
+    z-index:1;
+}
+
+.next-btn:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:
+        0 12px 30px rgba(255,215,0,.9),
+        0 0 60px rgba(255,215,0,.5);
+    background:linear-gradient(45deg,#ffed4e,#ffd700);
+}
+
+.next-btn:active{
+    transform:translateY(-1px) scale(1.02);
+}
+
+/* RESPONSIVE PERFECT UNTUK HP DAN DESKTOP */
+@media (max-width:992px){
+    .welcome-container{
+        padding:35px 25px;
+        margin:0 15px;
+        border-radius:18px;
+    }
+    
+    .welcome-title{
+        font-size:2.6rem;
+        min-height:100px;
+        margin-bottom:25px;
+        padding:0 10px;
+    }
+    
+    .typing-container{
+        min-height:70px;
+    }
+    
+    #typingText{
+        white-space:normal;
+        word-break:keep-all;
+        line-height:1.2;
+    }
+    
+    .subtitle{
+        font-size:1.4rem;
+        margin-bottom:35px;
+        padding:0 15px;
+    }
+    
+    .next-btn{
+        padding:15px 40px;
+        font-size:1.2rem;
+    }
+}
+
+@media (max-width:768px){
+    #page1{
+        padding:15px;
+    }
+    
+    .welcome-container{
+        padding:30px 20px;
+        margin:0 10px;
+        border-radius:15px;
+    }
+    
+    .welcome-title{
+        font-size:2.2rem;
+        min-height:85px;
+        margin-bottom:20px;
+        letter-spacing:1px;
+    }
+    
+    .typing-container{
+        min-height:60px;
+    }
+    
+    #typingText{
+        font-size:2.2rem;
+        padding:0 3px;
+        line-height:1.1;
+    }
+    
+    .cursor{
+        width:3px;
+        height:1.1em;
+        margin-left:2px;
+    }
+    
+    .subtitle{
+        font-size:1.2rem;
+        margin-bottom:30px;
+        padding:0 10px;
+    }
+    
+    .next-btn{
+        padding:14px 35px;
+        font-size:1.1rem;
+    }
+}
+
+@media (max-width:480px){
+    .welcome-container{
+        padding:25px 15px;
+        margin:0 5px;
+        border-radius:12px;
+    }
+    
+    .welcome-title{
+        font-size:1.9rem;
+        min-height:70px;
+        margin-bottom:15px;
+        letter-spacing:0.8px;
+        padding:0 5px;
+    }
+    
+    .typing-container{
+        min-height:50px;
+    }
+    
+    #typingText{
+        font-size:1.9rem;
+        line-height:1;
+    }
+    
+    .cursor{
+        width:2px;
+        height:1em;
+        margin-left:1px;
+    }
+    
+    .subtitle{
+        font-size:1rem;
+        margin-bottom:25px;
+        padding:0 5px;
+    }
+    
+    .next-btn{
+        padding:12px 30px;
+        font-size:1rem;
+    }
+}
+
+@media (max-width:360px){
+    .welcome-title{
+        font-size:1.7rem;
+        min-height:60px;
+    }
+    
+    #typingText{
+        font-size:1.7rem;
+    }
+    
+    .subtitle{
+        font-size:0.9rem;
+    }
+    
+    .next-btn{
+        padding:10px 25px;
+        font-size:0.9rem;
+    }
+}
+
+/* PAGE 2 - MAIN STORE (SAMA) */
+#page2{
+    display:none;
+    min-height:100vh;
+    background-image:url('latar2.jpg');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+#page2::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.7);
+    z-index:-1;
+}
+
+/* Header Styles */
+.header-container{
+    background-image:url('latar.jpg');
+    background-size:cover;
+    background-position:center;
+    padding:10px 15px;
+    border-bottom:2px solid #ffd700;
+    box-shadow:0 3px 15px rgba(0,0,0,0.7);
+    position:relative;
+    z-index:10;
+}
+
+.header-container::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.7);
+    z-index:-1;
+}
+
+.header-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:1200px;
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+}
+
+.logo-title{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.main-title{
+    font-size:1.8rem;
+    color:#ffd700;
+    text-shadow:0 0 10px rgba(255,215,0,0.8);
+    animation:float 3s ease-in-out infinite, blink 2s infinite;
+    letter-spacing:1px;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-5px);}
+}
+
+.header-subtitle{
+    font-size:0.8rem;
+    color:#ddd;
+    margin-top:5px;
+    letter-spacing:0.5px;
+}
+
+.menu-toggle{
+    background:rgba(255,215,0,0.1);
+    border:1px solid #ffd700;
+    color:#ffd700;
+    font-size:1.2rem;
+    cursor:pointer;
+    padding:6px 12px;
+    transition:all 0.3s ease;
+    border-radius:5px;
+    width:40px;
+    height:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.menu-toggle:hover{
+    transform:scale(1.05);
+    background:rgba(255,215,0,0.2);
+}
+
+/* Navigation Tabs */
+.nav-tabs-container{
+    max-width:1200px;
+    margin:10px auto;
+    padding:0 15px;
+}
+
+.nav-tabs{
+    display:flex;
+    justify-content:center;
+    background-color:rgba(17,17,17,0.9);
+    padding:5px;
+    border-radius:8px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.5);
+}
+
+.tab{
+    background:linear-gradient(45deg,#1a237e,#283593);
+    color:white;
+    border:none;
+    padding:6px 12px;
+    font-size:0.85rem;
+    cursor:pointer;
+    margin:0 3px;
+    border-radius:5px;
+    transition:all 0.3s ease;
+    flex:1;
+    max-width:150px;
+    text-align:center;
+    white-space:nowrap;
+}
+
+.tab.active{
+    background:linear-gradient(45deg,#ffd700,#ffaa00);
+    color:#000;
+    font-weight:bold;
+    box-shadow:0 0 8px rgba(255,215,0,0.7);
+}
+
+.tab:hover{
+    transform:translateY(-2px);
+    box-shadow:0 3px 10px rgba(0,0,0,0.3);
+}
+
+/* Products Section */
+.products-container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:0 15px;
+    display:none;
+}
+
+.products-container.active{
+    display:block;
+    animation:fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* JASTEB Products */
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:10px;
+    margin-top:15px;
+}
+
+.product-card{
+    background-color:rgba(26,26,46,0.85);
+    border-radius:6px;
+    overflow:hidden;
+    transition:all 0.3s ease;
+    border:1px solid #333;
+    position:relative;
+    box-shadow:0 2px 6px rgba(0,0,0,0.3);
+    min-height:140px;
+    max-height:160px;
+}
+
+.product-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 4px 10px rgba(0,0,0,0.5);
+    border-color:#ffd700;
+}
+
+.product-image{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    object-fit:cover;
+    position:absolute;
+    top:6px;
+    left:6px;
+    border:1px solid #ffd700;
+}
+
+.product-header{
+    background:linear-gradient(90deg,#0d47a1,#1976d2);
+    padding:8px;
+    padding-left:45px;
+    min-height:50px;
+}
+
+.product-title{
+    font-size:0.9rem;
+    margin-bottom:2px;
+    line-height:1.1;
+}
+
+.product-price{
+    color:#ffd700;
+    font-size:0.85rem;
+    font-weight:bold;
+}
+
+.product-content{
+    padding:8px;
+}
+
+.product-content ul{
+    list-style-type:none;
+    padding-left:5px;
+    margin-bottom:3px;
+}
+
+.product-content li{
+    margin-bottom:2px;
+    padding-left:12px;
+    position:relative;
+    font-size:0.7rem;
+    line-height:1.1;
+}
+
+.product-content li:before{
+    content:"✓";
+    color:#4CAF50;
+    position:absolute;
+    left:0;
+    font-weight:bold;
+    font-size:0.7rem;
+}
+
+.buy-btn{
+    background:linear-gradient(45deg,#4CAF50,#2E7D32);
+    color:white;
+    border:none;
+    padding:5px 10px;
+    border-radius:3px;
+    font-size:0.7rem;
+    cursor:pointer;
+    display:block;
+    margin:5px auto 3px;
+    width:90%;
+    transition:all 0.3s ease;
+}
+
+.buy-btn:hover{
+    background:linear-gradient(45deg,#66BB6A,#388E3C);
+    transform:scale(1.05);
+}
+
+/* PT JASTEB & TEAM JASTEB Styles */
+.pt-products,.team-products{
+    display:block;
+}
+
+.pt-product-card,.team-product-card{
+    background-color:rgba(0,0,0,0.85);
+    border-radius:8px;
+    overflow:hidden;
+    margin-bottom:12px;
+    border:2px solid #ffd700;
+    box-shadow:0 3px 8px rgba(255,215,0,0.2);
+}
+
+.pt-product-header,.team-product-header{
+    background:linear-gradient(90deg,#ffd700,#ffaa00);
+    padding:10px;
+    color:#000;
+}
+
+.pt-product-title,.team-product-title{
+    font-size:1.1rem;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.pt-product-price,.team-product-price{
+    font-size:1rem;
+    font-weight:bold;
+}
+
+.pt-product-content,.team-product-content{
+    padding:12px;
+    line-height:1.3;
+}
+
+.pt-product-content h3,.team-product-content h3{
+    color:#ffd700;
+    margin:8px 0 5px;
+    font-size:0.9rem;
+}
+
+.pt-product-content ul,.team-product-content ul{
+    list-style-type:none;
+    padding-left:5px;
+}
+
+.pt-product-content li,.team-product-content li{
+    margin-bottom:4px;
+    padding-left:15px;
+    position:relative;
+    font-size:0.8rem;
+}
+
+.pt-product-content li:before,.team-product-content li:before{
+    content:">";
+    color:#ffd700;
+    position:absolute;
+    left:0;
+    font-weight:bold;
+}
+
+/* Menu Popup */
+.menu-popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.95);
+    z-index:1000;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+.popup-content{
+    background:linear-gradient(135deg,#1a1a2e,#16213e);
+    padding:20px;
+    border-radius:8px;
+    text-align:center;
+    max-width:380px;
+    width:90%;
+    border:2px solid #ffd700;
+    box-shadow:0 0 15px rgba(255,215,0,0.5);
+}
+
+.popup-content h2{
+    color:#ffd700;
+    margin-bottom:12px;
+    font-size:1.3rem;
+}
+
+.wa-link{
+    display:inline-block;
+    background-color:#25D366;
+    color:white;
+    padding:8px 12px;
+    border-radius:50px;
+    text-decoration:none;
+    font-size:0.9rem;
+    margin:8px 0;
+    transition:all 0.3s ease;
+}
+
+.wa-link:hover{
+    background-color:#128C7E;
+    transform:scale(1.05);
+}
+
+.close-menu{
+    background:linear-gradient(45deg,#f44336,#d32f2f);
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:50px;
+    font-size:0.85rem;
+    cursor:pointer;
+    margin-top:8px;
+    transition:all 0.3s ease;
+}
+
+.close-menu:hover{
+    background:linear-gradient(45deg,#cc0000,#ff5252);
+    transform:scale(1.05);
+}
+
+/* Order Popup dengan QRIS kecil */
+.order-popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.95);
+    z-index:2000;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:20px;
+}
+
+.order-content{
+    background:linear-gradient(135deg,#1a1a2e,#16213e);
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    max-width:320px;
+    width:100%;
+    border:2px solid #ffd700;
+    box-shadow:0 0 15px rgba(255,215,0,0.5);
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.order-content h2{
+    color:#ffd700;
+    margin-bottom:15px;
+    font-size:1.4rem;
+}
+
+/* QRIS container */
+.qris-container{
+    width:100%;
+    max-width:180px;
+    height:180px;
+    margin:0 auto 15px;
+    border-radius:8px;
+    overflow:hidden;
+    border:2px solid #ffd700;
+    box-shadow:0 3px 10px rgba(0,0,0,0.5);
+    background-color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+.qris-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.payment-notice{
+    background-color:rgba(255,215,0,0.1);
+    border-left:3px solid #ffd700;
+    padding:10px;
+    margin:10px 0;
+    text-align:left;
+    font-size:0.85rem;
+    color:#ffd700;
+    border-radius:0 5px 5px 0;
+}
+
+.payment-details{
+    margin:15px 0;
+    text-align:left;
+    background-color:rgba(255,255,255,0.05);
+    padding:15px;
+    border-radius:8px;
+}
+
+.detail-item{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:6px;
+    padding-bottom:6px;
+    border-bottom:1px solid #333;
+    font-size:0.8rem;
+    align-items:center;
+}
+
+.copy-btn{
+    background-color:#444;
+    color:white;
+    border:none;
+    padding:3px 8px;
+    border-radius:4px;
+    cursor:pointer;
+    margin-left:8px;
+    font-size:0.7rem;
+    transition:all 0.2s ease;
+    white-space:nowrap;
+}
+
+.copy-btn:hover{
+    background-color:#666;
+}
+
+.wa-confirm-btn{
+    display:inline-block;
+    background-color:#25D366;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    font-size:0.85rem;
+    cursor:pointer;
+    text-decoration:none;
+    margin-top:15px;
+    transition:all 0.3s ease;
+    width:100%;
+    text-align:center;
+}
+
+.wa-confirm-btn:hover{
+    background-color:#128C7E;
+    transform:scale(1.02);
+}
+
+.close-order{
+    background:linear-gradient(45deg,#f44336,#d32f2f);
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:5px;
+    font-size:0.85rem;
+    cursor:pointer;
+    margin-top:15px;
+    transition:all 0.3s ease;
+    display:block;
+    width:100%;
+}
+
+.close-order:hover{
+    background:linear-gradient(45deg,#ef5350,#e53935);
+    transform:scale(1.02);
+}
+
+/* Music Player */
+.music-player{
+    position:fixed;
+    bottom:15px;
+    right:15px;
+    z-index:100;
+    background-color:rgba(0,0,0,0.8);
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    border:1px solid #ffd700;
+    box-shadow:0 0 10px rgba(255,215,0,0.5);
+}
+
+.music-icon{
+    font-size:1.3rem;
+    color:#ffd700;
+}
+
+.music-player.playing .music-icon{
+    animation:spin 3s linear infinite;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:12px;
+    margin-top:20px;
+    border-top:1px solid #333;
+    color:#aaa;
+    font-size:0.7rem;
+    max-width:1200px;
+    margin-left:auto;
+    margin-right:auto;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 - WELCOME SCREEN SEMPURNA -->
+<div id="page1">
+    <div class="bg-overlay"></div>
+    <div class="video-container">
+        <!-- VIDEO DENGAN PRELOAD DAN AUTOPLAY YANG BAIK -->
+        <video class="video-background" autoplay muted loop playsinline preload="auto" id="bgVideo">
+            <source src="video.mp4" type="video/mp4">
+            Browser Anda tidak mendukung video tag.
+        </video>
+    </div>
+
+    <div class="welcome-container">
+        <h1 class="welcome-title">
+            <div class="typing-container">
+                <span id="typingText"></span>
+            </div>
+        </h1>
+        <p class="subtitle">result masa kini | result premium</p>
+        <button class="next-btn" id="nextButton">NEXT</button>
+    </div>
+</div>
+
+<!-- PAGE 2 - MAIN STORE -->
+<div id="page2">
+    <!-- Header dengan latar belakang terpisah -->
+    <div class="header-container">
+        <div class="header-content">
+            <div class="logo-title">
+                <h1 class="main-title">👑CUXXYZ STORE👑</h1>
+                <p class="header-subtitle">ress murni + gg + deres + berisi + ber ip + City + lon + trusted</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Navigation Tabs horizontal kecil -->
+    <div class="nav-tabs-container">
+        <div class="nav-tabs">
+            <button class="tab active" data-target="jasteb">JASTEB</button>
+            <button class="tab" data-target="pt-jasteb">PT JASTEB</button>
+            <button class="tab" data-target="team-jasteb">TEAM JASTEB</button>
+        </div>
+    </div>
+    
+    <!-- Menu Popup (WhatsApp) -->
+    <div class="menu-popup" id="menuPopup">
+        <div class="popup-content">
+            <h2>Informasi & Kontak</h2>
+            <p>Hubungi kami melalui WhatsApp untuk informasi lebih lanjut:</p>
+            <a href="https://wa.me/6287892260743" class="wa-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp CUXXYZ STORE
+            </a>
+            <p>Kami siap membantu Anda 24/7</p>
+            <button class="close-menu" id="closeMenu">Tutup</button>
+        </div>
+    </div>
+    
+    <!-- Products Section: JASTEB -->
+    <div class="products-container active" id="jasteb">
+        <div class="products-grid">
+            <!-- Produk Jasteb akan di-generate dengan JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Products Section: PT JASTEB -->
+    <div class="products-container" id="pt-jasteb">
+        <div class="pt-products">
+            <!-- Produk PT Jasteb akan di-generate dengan JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Products Section: TEAM JASTEB -->
+    <div class="products-container" id="team-jasteb">
+        <div class="team-products">
+            <!-- Produk Team Jasteb akan di-generate dengan JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Order Popup dengan QRIS asli -->
+    <div class="order-popup" id="orderPopup">
+        <div class="order-content">
+            <h2 id="popupTitle">Order Produk</h2>
+            <div class="qris-container">
+                <img src="qris.jpg" alt="QRIS Code" class="qris-img">
+            </div>
+            <p>Scan QRIS di atas untuk pembayaran</p>
+            
+            <!-- Pemberitahuan baru -->
+            <div class="payment-notice">
+                <p><strong>⚠️ PENTING:</strong> Mohon untuk memasukkan nominal harga yang tertera, dan sertakan bukti transfer (screenshot)</p>
+            </div>
+            
+            <div class="payment-details">
+                <div class="detail-item">
+                    <span>Dana:</span>
+                    <span>083892571829 <button class="copy-btn" data-text="083892571829">Salin</button></span>
+                </div>
+                <div class="detail-item">
+                    <span>Nama Produk:</span>
+                    <span id="productName">-</span>
+                </div>
+                <div id="quantityField" class="detail-item">
+                    <span>Jumlah Order:</span>
+                    <span id="productQuantity">1</span>
+                </div>
+                <div class="detail-item">
+                    <span>Harga:</span>
+                    <span id="productPrice">-</span>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/6287892260743?text=Saya%20sudah%20melakukan%20pembayaran%20untuk%20produk%20di%20CUXXYZ%20STORE" 
+               class="wa-confirm-btn" target="_blank" id="waConfirmBtn">
+                <i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp
+            </a>
+            
+            <button class="close-order" id="closeOrder">Tutup</button>
+        </div>
+    </div>
+    
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <i class="fas fa-music music-icon"></i>
+        <audio id="backgroundMusic" loop preload="auto">
+            <source src="musik.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung audio tag.
+        </audio>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2023 CUXXYZ STORE. All rights reserved. | result premium terpercaya</p>
+    </footer>
+</div>
+
+<script>
+// Data produk
+const jastebProducts = [
+    {
+        id: 1,
+        title: "45+ result",
+        price: "Rp 3.000",
+        features: ["Result 45+", "Fresh accounts", "High quality", "Fast delivery"]
+    },
+    {
+        id: 2,
+        title: "60+ result",
+        price: "Rp 4.000",
+        features: ["Result 60+", "Fresh accounts", "High quality", "Fast delivery"]
+    },
+    {
+        id: 3,
+        title: "85+ result",
+        price: "Rp 5.000",
+        features: ["Result 85+", "Fresh accounts", "High quality", "Fast delivery"]
+    },
+    {
+        id: 4,
+        title: "145+ result",
+        price: "Rp 10.000",
+        features: ["Result 145+", "Fresh accounts", "High quality", "Fast delivery"]
+    },
+    {
+        id: 5,
+        title: "175+ result",
+        price: "Rp 15.000",
+        features: ["Result 175+", "Fresh accounts", "High quality", "Fast delivery"]
+    },
+    {
+        id: 6,
+        title: "215+ result",
+        price: "Rp 20.000",
+        features: ["Result 215+", "Fresh accounts", "High quality", "Fast delivery"]
+    }
+];
+
+const ptJastebProducts = [
+    {
+        id: 1,
+        title: "PT JASTEB ⪨mini⪩",
+        price: "Rp 5.000",
+        benefits: [
+            "BEBAS PASANG EMAIL BRP PUN",
+            "RES MURNI NO AUTO RES!!",
+            "BISA JUALAN UNCHEK",
+            "BISA OPEN JASTEB",
+            "BISA CEK2 SENDIRI",
+            "BISA OPEN ECER / JIMEL",
+            "GA PERLU NEBAR",
+            "BISA CEK² JASTEB SEPUASNYA",
+            "STOK AKUN GG GG",
+            "[pt² 5k tiap jumat]",
+            "BISA MALMOD JUTAAN,ASAL NIAT OPEN!!"
+        ]
+    },
+    {
+        id: 2,
+        title: "PT JASTEB ⪨biasa⪩",
+        price: "Rp 10.000",
+        benefits: [
+            "BEBAS PASANG EMAIL BRP PUN",
+            "DAPAT 2 PANEL JASTEB",
+            "RES MURNI NO AUTO RES!!",
+            "BISA JUALAN UNCHEK",
+            "BISA OPEN JASTEB",
+            "BISA CEK2 SENDIRI",
+            "BISA OPEN ECER / JIMEL",
+            "GA PERLU NEBAR",
+            "BISA CEK² JASTEB SEPUASNYA",
+            "STOK AKUN GG GG",
+            "BISA BALMOD JUTAAN,ASAL NIAT OPEN!!"
+        ]
+    },
+    {
+        id: 3,
+        title: "PT JASTEB ⪨vip⪩",
+        price: "Rp 15.000",
+        benefits: [
+            "BEBAS PASANG EMAIL BRP PUN",
+            "DAPAT 1 PANEL PRIB + 1 PANEL GB",
+            "RES MURNI NO AUTO RES!!",
+            "BISA OPEN PT JASTEB",
+            "BISA JUALAN UNCHEK",
+            "BISA OPEN JASTEB",
+            "BISA CEK2 SENDIRI",
+            "BISA OPEN ECER / JIMEL",
+            "GA PERLU NEBAR",
+            "BISA CEK² JASTEB SEPUASNYA",
+            "STOK AKUN GG GG",
+            "BISA BALMOD JUTAAN,ASAL NIAT OPEN!!"
+        ]
+    }
+];
+
+const teamJastebProducts = [
+    {
+        id: 1,
+        title: "TEAM JASTEB",
+        price: "Rp 15.000",
+        benefits: [
+            "DAPAT LINK CREATE PANEL",
+            "JADI BISA BUAT LINK PANEL",
+            "MAX EMAIL UNLIMITED",
+            "DERES + BER ISI",
+            "RESS BER IP+CITY+LON DLL",
+            "NAMA RESS BISA DI GANTI",
+            "BISA OPEN PT JASTEB",
+            "BISA OPEN JASTEB",
+            "BISA OPEN ECER/SGMAIL",
+            "BISA CEK JASTEB SEPUASNYA",
+            "GA PERLU NEBAR",
+            "BISA BALMOD JUTAAN,ASAL NIAT OPEN!!"
+        ]
+    }
+];
+
+// DOM Elements
+const page1 = document.getElementById('page1');
+const page2 = document.getElementById('page2');
+const nextButton = document.getElementById('nextButton');
+const typingText = document.getElementById('typingText');
+const cursor = document.querySelector('.cursor');
+const bgVideo = document.getElementById('bgVideo');
+const menuToggle = document.getElementById('menuToggle');
+const menuPopup = document.getElementById('menuPopup');
+const closeMenu = document.getElementById('closeMenu');
+const tabs = document.querySelectorAll('.tab');
+const productsContainers = document.querySelectorAll('.products-container');
+const orderPopup = document.getElementById('orderPopup');
+const closeOrder = document.getElementById('closeOrder');
+const musicPlayer = document.getElementById('musicPlayer');
+const backgroundMusic = document.getElementById('backgroundMusic');
+const waConfirmBtn = document.getElementById('waConfirmBtn');
+
+// EFEK TYPING YANG BENAR - HANYA "WELCOME TO CUXXYZ STORE"
+function typeWriterEffect() {
+    const text = "WELCOME TO CUXXYZ STORE";
+    let i = 0;
+    const speed = 80;
+
+    typingText.textContent = "";
+    cursor.style.opacity = "1";
+
+    function type() {
+        if (i < text.length) {
+            typingText.textContent += text[i];
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+
+    type();
+}
+
+// FUNGSI UNTUK MEMASTIKAN VIDEO BERJALAN LANCAR
+function playBackgroundVideo() {
+    if (!bgVideo) return;
+
+    bgVideo.muted = true;
+    bgVideo.loop = true;
+    bgVideo.playsInline = true;
+
+    const playPromise = bgVideo.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            document.addEventListener("click", () => {
+                bgVideo.play();
+            }, { once: true });
+        });
+    }
+}
+
+// Generate Jasteb Products dengan foto
+function generateJastebProducts() {
+    const productsGrid = document.querySelector('.products-grid');
+    productsGrid.innerHTML = '';
+    
+    jastebProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            <img src="foto.jpg" alt="Foto Produk" class="product-image">
+            <div class="product-header">
+                <h3 class="product-title">${product.title}</h3>
+                <p class="product-price">${product.price}</p>
+            </div>
+            <div class="product-content">
+                <ul>
+                    ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+                <button class="buy-btn" data-type="jasteb" data-id="${product.id}">Beli Sekarang</button>
+            </div>
+        `;
+        productsGrid.appendChild(productCard);
+    });
+    
+    // Add event listeners to buy buttons
+    document.querySelectorAll('.buy-btn[data-type="jasteb"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            const product = jastebProducts.find(p => p.id === productId);
+            openOrderPopup(product, 'jasteb');
+        });
+    });
+}
+
+// Generate PT Jasteb Products
+function generatePtJastebProducts() {
+    const ptProductsContainer = document.querySelector('.pt-products');
+    ptProductsContainer.innerHTML = '';
+    
+    ptJastebProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'pt-product-card';
+        productCard.innerHTML = `
+            <div class="pt-product-header">
+                <h3 class="pt-product-title">${product.title}</h3>
+                <p class="pt-product-price">${product.price}</p>
+            </div>
+            <div class="pt-product-content">
+                <h3>BENEFIT</h3>
+                <ul>
+                    ${product.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                </ul>
+                <button class="buy-btn" data-type="pt-jasteb" data-id="${product.id}">Beli Sekarang</button>
+            </div>
+        `;
+        ptProductsContainer.appendChild(productCard);
+    });
+    
+    // Add event listeners to buy buttons
+    document.querySelectorAll('.buy-btn[data-type="pt-jasteb"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            const product = ptJastebProducts.find(p => p.id === productId);
+            openOrderPopup(product, 'pt-jasteb');
+        });
+    });
+}
+
+// Generate Team Jasteb Products
+function generateTeamJastebProducts() {
+    const teamProductsContainer = document.querySelector('.team-products');
+    teamProductsContainer.innerHTML = '';
+    
+    teamJastebProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'team-product-card';
+        productCard.innerHTML = `
+            <div class="team-product-header">
+                <h3 class="team-product-title">${product.title}</h3>
+                <p class="team-product-price">${product.price}</p>
+            </div>
+            <div class="team-product-content">
+                <h3>BENEFIT</h3>
+                <ul>
+                    ${product.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                </ul>
+                <button class="buy-btn" data-type="team-jasteb" data-id="${product.id}">Beli Sekarang</button>
+            </div>
+        `;
+        teamProductsContainer.appendChild(productCard);
+    });
+    
+    // Add event listeners to buy buttons
+    document.querySelectorAll('.buy-btn[data-type="team-jasteb"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            const product = teamJastebProducts.find(p => p.id === productId);
+            openOrderPopup(product, 'team-jasteb');
+        });
+    });
+}
+
+// Open Order Popup
+function openOrderPopup(product, type) {
+    document.getElementById('productName').textContent = product.title;
+    document.getElementById('productPrice').textContent = product.price;
+    
+    // Show/hide quantity field based on product type
+    const quantityField = document.getElementById('quantityField');
+    if (type === 'jasteb') {
+        quantityField.style.display = 'flex';
+    } else {
+        quantityField.style.display = 'none';
+    }
+    
+    // Update popup title
+    document.getElementById('popupTitle').textContent = `Order ${product.title}`;
+    
+    // Update WhatsApp confirmation link with product info
+    const message = `Halo admin CUXXYZ STORE, saya sudah melakukan pembayaran untuk:\n\n📦 Produk: ${product.title}\n💰 Harga: ${product.price}\n\nMohon diproses, berikut bukti transfer saya:`;
+    const encodedMessage = encodeURIComponent(message);
+    waConfirmBtn.href = `https://wa.me/6287892260743?text=${encodedMessage}`;
+    
+    // Show popup
+    orderPopup.style.display = 'flex';
+}
+
+// Event Listeners untuk halaman 1
+nextButton.addEventListener('click', function() {
+    // Hide page 1 dengan efek fade
+    page1.style.opacity = '0';
+    
+    // After transition, hide page 1 and show page 2
+    setTimeout(() => {
+        page1.style.display = 'none';
+        page2.style.display = 'block';
+        
+        // Generate products
+        generateJastebProducts();
+        generatePtJastebProducts();
+        generateTeamJastebProducts();
+        
+        // Play background music
+        setTimeout(() => {
+            try {
+                backgroundMusic.volume = 0.5;
+                backgroundMusic.play();
+                musicPlayer.classList.add('playing');
+            } catch (e) {
+                console.log("Autoplay prevented:", e);
+            }
+        }, 500);
+    }, 800);
+});
+
+// Event Listeners untuk halaman 2
+menuToggle.addEventListener('click', function() {
+    menuPopup.style.display = 'flex';
+});
+
+closeMenu.addEventListener('click', function() {
+    menuPopup.style.display = 'none';
+});
+
+closeOrder.addEventListener('click', function() {
+    orderPopup.style.display = 'none';
+});
+
+// Tab switching
+tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        
+        // Update active tab
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Show target container, hide others
+        productsContainers.forEach(container => {
+            container.classList.remove('active');
+            if (container.id === targetId) {
+                container.classList.add('active');
+            }
+        });
+    });
+});
+
+// Music player toggle
+musicPlayer.addEventListener('click', function() {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        this.classList.add('playing');
+    } else {
+        backgroundMusic.pause();
+        this.classList.remove('playing');
+    }
+});
+
+// Copy button functionality
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('copy-btn')) {
+        const textToCopy = e.target.getAttribute('data-text');
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            const originalText = e.target.textContent;
+            e.target.textContent = 'Tersalin!';
+            e.target.style.backgroundColor = '#4CAF50';
+            setTimeout(() => {
+                e.target.textContent = originalText;
+                e.target.style.backgroundColor = '#444';
+            }, 2000);
+        });
+    }
+});
+
+// Initialize website
+window.onload = function() {
+    // Mulai efek typing huruf per huruf - HANYA "WELCOME TO CUXXYZ STORE"
+    typeWriterEffect();
+    
+    // Pastikan video berjalan lancar
+    ensureVideoPlays();
+    
+    // Cek jika video ready
+    if (bgVideo) {
+        bgVideo.addEventListener('loadeddata', function() {
+            console.log("Video loaded successfully");
+        });
+        
+        bgVideo.addEventListener('error', function() {
+            console.log("Video error, using fallback background");
+        });
+    }
+};
+
+// Juga mulai saat DOM siap (lebih cepat)
+
+</script>
+
+</body>
+</html> 
