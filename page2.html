@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUXXYZ STORE</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{
+  background:url(latar2.jpg) center/cover fixed;
+  color:white;
+}
+
+/* ===== HEADER ===== */
+header{
+  position:sticky;
+  top:0;
+  background:url(latar.jpg) center/cover;
+  padding:10px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:999;
+}
+
+.title{
+  color:#00aaff;
+  font-weight:bold;
+  animation:blink 1.5s infinite, float 3s ease-in-out infinite;
+}
+@keyframes blink{50%{opacity:.6}}
+@keyframes float{50%{transform:translateY(-4px)}}
+
+.menu{font-size:22px;cursor:pointer}
+
+/* ===== MENU POPUP ===== */
+.menu-popup{
+  position:fixed;
+  top:65px;
+  right:15px;
+  background:#000;
+  border:1px solid gold;
+  padding:12px;
+  display:none;
+}
+.menu-popup a{color:#00ffcc;text-decoration:none}
+
+/* ===== CATEGORY ===== */
+.cat{
+  display:flex;
+  gap:8px;
+  padding:10px;
+}
+.cat button{
+  padding:6px 12px;
+  border:none;
+  border-radius:15px;
+  background:gold;
+  font-size:12px;
+}
+.cat button.active{background:#00aaff;color:white}
+
+/* ===== PRODUCTS ===== */
+.products{display:none;padding:12px}
+.products.active{display:block}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.item{
+  background:#002b4d;
+  border:2px solid gold;
+  border-radius:18px;
+  padding:18px 8px 12px;
+  text-align:center; /* ⬅ TENGAH */
+  position:relative;
+  animation:float 4s infinite;
+}
+.item img{
+  width:36px;height:36px;
+  border-radius:50%;
+  position:absolute;
+  top:-18px;left:50%;
+  transform:translateX(-50%);
+}
+
+.order{
+  margin-top:8px;
+  padding:6px;
+  width:100%;
+  border:none;
+  border-radius:15px;
+  background:#c00000;
+  color:white;
+}
+
+/* ===== QRIS ===== */
+.qris{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+.qbox{
+  background:#000;
+  width:300px;
+  padding:15px;
+  border-radius:18px;
+  text-align:center;
+}
+.qbox img{
+  width:100%;
+  border:3px solid red;
+}
+.info-box{
+  border:1px solid gold;
+  padding:10px;
+  margin:10px 0;
+}
+.actions{
+  display:flex;
+  gap:10px;
+}
+.actions button{
+  flex:1;
+  padding:8px;
+  border:none;
+  border-radius:18px;
+  font-weight:bold;
+}
+.wa{background:#25D366;color:black}
+.back{background:#333;color:white}
+
+/* ===== MUSIC ===== */
+.music{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  padding:15px;
+  opacity:.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div>
+    <div class="title">🐬CUXXYZ STORE🐬</div>
+    <small>ress gg + gacor + murni + trusted</small>
+  </div>
+  <div class="menu" onclick="menu()">☰</div>
+</header>
+
+<div class="menu-popup" id="menu">
+  <a href="https://wa.me/6287892260743" target="_blank">WhatsApp</a><br><br>
+  <button onclick="menu()">Tutup</button>
+</div>
+
+<div class="cat">
+  <button class="active" onclick="show('jast')">JASTEB</button>
+  <button onclick="show('pt')">PT JASTEB</button>
+  <button onclick="show('team')">TEAM</button>
+  <button onclick="show('murnok')">MURNOK</button>
+</div>
+
+<!-- JASTEB -->
+<div class="products active" id="jast">
+  <div class="grid">
+    <div class="item"><img src="foto.jpg">45+ RESULT<br>Rp 3.000<button class="order" onclick="openQ('45+ RESULT','3000')">ORDER</button></div>
+    <div class="item"><img src="foto.jpg">65+ RESULT<br>Rp 4.000<button class="order" onclick="openQ('65+ RESULT','4000')">ORDER</button></div>
+    <div class="item"><img src="foto.jpg">90+ RESULT<br>Rp 5.000<button class="order" onclick="openQ('90+ RESULT','5000')">ORDER</button></div>
+    <div class="item"><img src="foto.jpg">150+ RESULT<br>Rp 10.000<button class="order" onclick="openQ('150+ RESULT','10000')">ORDER</button></div>
+    <div class="item"><img src="foto.jpg">210+ RESULT<br>Rp 15.000<button class="order" onclick="openQ('210+ RESULT','15000')">ORDER</button></div>
+    <div class="item"><img src="foto.jpg">295+ RESULT<br>Rp 20.000<button class="order" onclick="openQ('295+ RESULT','20000')">ORDER</button></div>
+  </div>
+</div>
+
+<!-- PT / TEAM / MURNOK -->
+<div class="products" id="pt"><div class="item">PT JASTEB MINI<br>Rp 5.000<button class="order" onclick="openQ('PT JASTEB MINI','5000')">ORDER</button></div></div>
+<div class="products" id="team"><div class="item">TEAM JASTEB<br>Rp 10.000<button class="order" onclick="openQ('TEAM JASTEB','10000')">ORDER</button></div></div>
+<div class="products" id="murnok"><div class="item">MURID NOKOS<br>Rp 3.000<button class="order" onclick="openQ('MURID NOKOS','3000')">ORDER</button></div></div>
+
+<!-- QRIS -->
+<div class="qris" id="qris">
+  <div class="qbox">
+    <img src="qris.jpg">
+    <p>Silakan scan QRIS</p>
+    <div class="info-box">
+      Dana : 083892571829<br>
+      Produk : <span id="p"></span><br>
+      Harga : Rp <span id="h"></span>
+    </div>
+    <div class="actions">
+      <button class="wa" onclick="wa()">WA</button>
+      <button class="back" onclick="closeQ()">Kembali</button>
+    </div>
+  </div>
+</div>
+
+<div class="music" onclick="music()">🎵</div>
+<audio id="m" src="musik.mp3" autoplay loop></audio>
+
+<footer>© 2026 CUXXYZ STORE • Professional Digital Service</footer>
+
+<script>
+let prod="",harga="";
+function show(id){
+  document.querySelectorAll('.products').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.cat button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+function menu(){menu.style.display=menu.style.display=="block"?"none":"block"}
+function openQ(p,h){prod=p;harga=h;p.innerText=p;h.innerText=h;qris.style.display="flex"}
+function closeQ(){qris.style.display="none"}
+function wa(){
+  window.open(`https://wa.me/6287892260743?text=saya mau kirim bukti transfer (ss) | ${prod} | Rp ${harga}`);
+}
+let play=true;
+function music(){play=!play;play?m.play():m.pause()}
+</script>
+
+</body>
+</html>
